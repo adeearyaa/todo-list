@@ -1,4 +1,7 @@
 import "./sidebarStyle.css";
+import {displayAllItems} from "./tasks.js";
+import {displayTodaysItems} from "./tasks.js";
+import {displayWeeksItems} from "./tasks.js";
 
 const customizeSidebar = function(sidebar) {
     let taskSection = document.createElement("div");
@@ -28,7 +31,7 @@ const customizeProjectButton = function(customizeProjectButton) {
 const customizeTasklist = function(taskSection) {
     taskSection.classList.add("sidebar-tasklist");
     let list = document.createElement("div");
-    let displayList = ["All", "Today", "Week", "Month"];
+    let displayList = ["All", "Today", "Week"];
     for (let item of displayList) {
         let listItem = document.createElement("button");
         listItem.classList.add("task-buttons");
@@ -42,7 +45,7 @@ const customizeTasklist = function(taskSection) {
 const customizeProjectList = function(projectSection)  {
     projectSection.classList.add("sidebar-project-list");
     let list = document.createElement("div");
-    let displayList = ["All", "Today", "Week", "Month"];
+    let displayList = ["All", "Today", "Week"];
     for (let item of displayList) {
         let listItem = document.createElement("button");
         listItem.classList.add("task-buttons");
@@ -53,4 +56,30 @@ const customizeProjectList = function(projectSection)  {
     
 }
 
-export {customizeSidebar};
+const allButtonPressed = function() {
+    mainPageItems = document.querySelector(".main-page-items");
+    mainPageItems.innerHTML = "";
+    contentPageHeader("All Tasks");
+    displayAllItems(mainPageItems);
+}
+
+const todayButtonPressed = function() {
+    mainPageItems = document.querySelector(".main-page-items");
+    mainPageItems.innerHTML = "";
+    contentPageHeader("Today's Tasks");
+    displayTodaysItems(mainPageItems);
+}
+
+const weekButtonPressed = function() {
+    mainPageItems = document.querySelector(".main-page-items");
+    mainPageItems.innerHTML = "";
+    contentPageHeader("This Week's Tasks");
+    displayWeeksItems(mainPageItems);
+}
+
+const contentPageHeader = function(headerValue) {
+    mainPageHeader = document.querySelector("main-page-header");
+    mainPageHeader.textContent = headerValue
+}
+
+export {customizeSidebar, allButtonPressed, weekButtonPressed, todayButtonPressed};

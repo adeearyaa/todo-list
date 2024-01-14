@@ -1,5 +1,6 @@
 import "./indexStyle.css";
 import {customizeSidebar} from "./sidebar.js"
+import {contentPageLayout} from "./contentPage.js"
 
 const initialMainContainer = document.querySelector("#index-container");
 
@@ -7,7 +8,6 @@ const initialLoad = function () {
     headerContainer();
     middleContainer();
     footerContainer();
-    
 }
 
 const headerContainer = function () {
@@ -22,6 +22,9 @@ const middleContainer = function () {
     middle.classList.add("middle-container");
     initialMainContainer.appendChild(middle);
     let sidebar = document.createElement("div");
+    let mainContentPage = document.createElement("div");
+    mainContentPage.classList.add("main-content");
+    contentPageLayout(mainContentPage);
     sidebar.classList.add("sidebar");
     // create this function in sidebar.js but its styling will be done in indexStyle.css
     customizeSidebar(sidebar);

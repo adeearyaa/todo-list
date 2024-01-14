@@ -21,6 +21,16 @@ body, html {
     justify-content:space-around;
 }
 
+.main-content {
+    height:100%;
+    display:flex;
+    flex-grow:1;
+    background-color:white;
+    flex-direction:column;
+    align-items:center;
+    justify-content:space-around;
+}
+
 .header {
     display:flex;
     flex-grow:0;
