@@ -1,44 +1,56 @@
 import "./indexStyle.css";
-import {customizeSidebar} from "./sidebar.js"
-import {contentPageLayout} from "./contentPage.js"
+import {sidebarLayout} from "./sidebar.js";
+import {contentAreaLayout} from "./contentPage.js";
+import { sidebarTaskButtonPressed } from "./buttonLogic";
+import { addEventListenerToAddProjects } from "./projectButtonLogic";
 
-const initialMainContainer = document.querySelector("#index-container");
+const overarchingContainer = document.querySelector("#overarching-container");
 
 const initialLoad = function () {
-    headerContainer();
-    middleContainer();
-    footerContainer();
+    loadHeaderContainer();
+    loadMiddleContainer();
+    loadFooterContainer();
+    sidebarTaskButtonPressed();
+    addEventListenerToAddProjects();
 }
 
-const headerContainer = function () {
+const loadHeaderContainer = function () {
     let header = document.createElement("div");
     header.classList.add("header");
     header.textContent = "DAILY - PLANNER";
-    initialMainContainer.appendChild(header);
+    overarchingContainer.appendChild(header);
 }
 
-const middleContainer = function () {
-    let middle = document.createElement("div");
-    middle.classList.add("middle-container");
-    initialMainContainer.appendChild(middle);
+const loadMiddleContainer = function () {
+    let middleContainer = document.createElement("div");
+    middleContainer.classList.add("middle-container");
+    overarchingContainer.appendChild(middleContainer);
+    loadSidebar(middleContainer);
+    loadContentArea(middleContainer);
+}
+
+const loadSidebar = function(middleContainer) {
     let sidebar = document.createElement("div");
-    let mainContentPage = document.createElement("div");
-    mainContentPage.classList.add("main-content");
-    contentPageLayout(mainContentPage);
     sidebar.classList.add("sidebar");
-    // create this function in sidebar.js but its styling will be done in indexStyle.css
-    customizeSidebar(sidebar);
-    middle.appendChild(sidebar);
+    sidebarLayout(sidebar);
+    middleContainer.appendChild(sidebar);
+    console.log("yes");
 }
 
+const loadContentArea = function(middleContainer) {
+    let contentArea = document.createElement("div");
+    contentArea.classList.add("content-area");
+    contentAreaLayout(contentArea);
+    middleContainer.appendChild(contentArea);
+}
 
-const footerContainer = function () {
+const loadFooterContainer = function () {
     let footer = document.createElement("div");
     footer.classList.add("footer");
     let copyrightDiv = "<div>Copyright" + " &copy; " + new Date().getFullYear() + "</div>" ;
     let githubLink = "<a href='https://example.com'>adeearyaa</a>";
     footer.innerHTML = `${copyrightDiv} ${githubLink}` ;
-    initialMainContainer.appendChild(footer);
+    overarchingContainer.appendChild(footer);
 }
 
 initialLoad();

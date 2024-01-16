@@ -1,0 +1,35 @@
+.task-item {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.task-title {
+    font-weight: bold;
+    color: #333;
+}
+
+.task-date {
+    margin-left: 10px;
+    color: #666;
+}
+
+.task-priority {
+    margin-left: 10px;
+    font-style: italic;
+}
+
+/* Example priority colors */
+.priority-1 {
+    color: red;
+}
+
+.priority-2 {
+    color: orange;
+}
+
+.priority-3 {
+    color: green;
+}

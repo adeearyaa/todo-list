@@ -1,85 +1,90 @@
 import "./sidebarStyle.css";
-import {displayAllItems} from "./tasks.js";
-import {displayTodaysItems} from "./tasks.js";
-import {displayWeeksItems} from "./tasks.js";
+import {retrieveListOfProjects} from "./projects.js";
 
-const customizeSidebar = function(sidebar) {
-    let taskSection = document.createElement("div");
-    customizeTasklist(taskSection);
-    sidebar.appendChild(taskSection);
-    let header = document.createElement("h2");
-    customizeHeader(header);
-    sidebar.appendChild(header);
-    let projectSection = document.createElement("div");
-    customizeProjectList(projectSection);
+
+const sidebarLayout = function(sidebar) {
+    let sidebarTasks = loadSidebarTasks();
+    sidebar.appendChild(sidebarTasks);
+
+    let projectHeader = loadProjectHeader();
+    sidebar.appendChild(projectHeader);
+
+    let projectSection = loadProjectList();
     sidebar.appendChild(projectSection);
-    let addProjectButton = document.createElement("button");
-    customizeProjectButton(addProjectButton);
+
+    let addProjectButton = loadAddProjectButton();
     sidebar.appendChild(addProjectButton);
 }
 
-const customizeHeader = function(header) {
-    header.textContent = "PROJECTS";
-    header.classList.add("sidebar-header");
+const loadSidebarTasks = () => {
+    let taskSection = document.createElement("div");
+    taskSection.classList.add("sidebar-task-buttons");
+    taskSection.appendChild(customizeTaskButtons());
+    return taskSection;
 }
 
-const customizeProjectButton = function(customizeProjectButton) {
-    customizeProjectButton.textContent = "+ Add Project";
-    customizeProjectButton.classList.add("project-button");
-}
-
-const customizeTasklist = function(taskSection) {
-    taskSection.classList.add("sidebar-tasklist");
-    let list = document.createElement("div");
+const customizeTaskButtons = function() {
+    let taskButtons = document.createElement("div");
     let displayList = ["All", "Today", "Week"];
     for (let item of displayList) {
-        let listItem = document.createElement("button");
-        listItem.classList.add("task-buttons");
-        listItem.classList.add(`${item}-button`)
-        listItem.textContent = item;
-        list.appendChild(listItem);
+        let taskButton = document.createElement("button");
+        taskButton.classList.add("task-buttons");
+        taskButton.classList.add(`${item}-button`)
+        taskButton.textContent = item;
+        taskButtons.appendChild(taskButton);
     }
-    taskSection.appendChild(list);
+    return taskButtons;
 }
 
-const customizeProjectList = function(projectSection)  {
-    projectSection.classList.add("sidebar-project-list");
-    let list = document.createElement("div");
-    let displayList = ["All", "Today", "Week"];
-    for (let item of displayList) {
-        let listItem = document.createElement("button");
-        listItem.classList.add("task-buttons");
-        listItem.textContent = item;
-        list.appendChild(listItem);
+const loadProjectHeader = () => {
+    let projectHeader = document.createElement("h2");
+    customizeHeader(projectHeader);
+    projectHeader.classList.add("sidebar-project-header");
+    return projectHeader;
+}
+
+const customizeHeader = function(projectHeader) {
+    projectHeader.textContent = "PROJECTS";
+}
+
+const loadProjectList = () => {
+    let projectList = document.createElement("div");
+    projectList.classList.add("sidebar-project-list");
+    projectList.appendChild(displayProjectList());
+    return projectList;
+}
+
+
+const displayProjectList = function()  {
+    let listOfProjects = document.createElement("div");
+    listOfProjects.classList.add("list-of-projects");
+    let projectDisplayList = retrieveListOfProjects();
+    for (let project of projectDisplayList) {
+        let projectButton = document.createElement("button");
+        projectButton.classList.add("project-buttons");
+        projectButton.classList.add(`project-${project.id}`);
+        projectButton.textContent = project.title;
+        listOfProjects.appendChild(projectButton);
     }
-    projectSection.append(list);
-    
+    return listOfProjects;
 }
 
-const allButtonPressed = function() {
-    mainPageItems = document.querySelector(".main-page-items");
-    mainPageItems.innerHTML = "";
-    contentPageHeader("All Tasks");
-    displayAllItems(mainPageItems);
+// should be called by the function in projects which adds
+const addToProjectButtonsList = function(projectButton) {
+        let listOfProjects = document.querySelector(".list-of-projects");
+        listOfProjects.appendChild(projectButton);
 }
 
-const todayButtonPressed = function() {
-    mainPageItems = document.querySelector(".main-page-items");
-    mainPageItems.innerHTML = "";
-    contentPageHeader("Today's Tasks");
-    displayTodaysItems(mainPageItems);
+const loadAddProjectButton = () => {
+    let addProjectButton = document.createElement("button");
+    addProjectButton.classList.add("add-project-button");
+    customizeAddProjectButton(addProjectButton);
+    return addProjectButton;
 }
 
-const weekButtonPressed = function() {
-    mainPageItems = document.querySelector(".main-page-items");
-    mainPageItems.innerHTML = "";
-    contentPageHeader("This Week's Tasks");
-    displayWeeksItems(mainPageItems);
+const customizeAddProjectButton = function(addProjectButton) {
+    addProjectButton.textContent = "+ Add Project";
 }
 
-const contentPageHeader = function(headerValue) {
-    mainPageHeader = document.querySelector("main-page-header");
-    mainPageHeader.textContent = headerValue
-}
 
-export {customizeSidebar, allButtonPressed, weekButtonPressed, todayButtonPressed};
+export {sidebarLayout,addToProjectButtonsList};

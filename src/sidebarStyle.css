@@ -25,7 +25,7 @@ button:hover, .task-buttons:focus {
   transform: scale(1.05) rotate(-1deg);
 }
 
-.sidebar-header {
+.sidebar-project-header {
     color:black;
     padding:15px;
 }

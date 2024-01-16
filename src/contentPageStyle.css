@@ -1,8 +1,8 @@
-.main-page-header {
+.content-area-header {
     color:black;
 }
 
-.main-page-items {
+.content-area-items {
     display:flex;
     flex-direction:column;
     gap: 10px;

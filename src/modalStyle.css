@@ -1,0 +1,30 @@
+.modal {
+    width: 300px;
+    border: 1px solid #000;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.modal h2 {
+    margin-top: 0;
+}
+
+.modal input, .modal select, .modal button {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.modal button {
+    background-color: #007BFF;
+    color: white;
+    cursor: pointer;
+}
+
+.modal button:hover {
+    background-color: #0056b3;
+}
