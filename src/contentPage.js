@@ -1,4 +1,4 @@
-import {createModal} from "./modal.js";
+import {createModal,createAddTaskProjectModal} from "./modal.js";
 
 const contentAreaLayout = function(contentArea) {
     let contentAreaHeader = loadContentAreaHeader();
@@ -9,6 +9,9 @@ const contentAreaLayout = function(contentArea) {
 
     let contentAreaAddTaskButton = loadContentAreaAddTaskButton();
     contentArea.appendChild(contentAreaAddTaskButton);
+
+    let contentAreaAddProjectTaskButton = loadContentAreaAddProjectTaskButton();
+    contentArea.appendChild(contentAreaAddProjectTaskButton);
 }
 
 const loadContentAreaHeader = () => {
@@ -70,4 +73,31 @@ const toggleContentAreaAddTaskButton = (flag) => {
     }
 }
 
-export {clearContentAreaContainer,customizeContentAreaHeader,addTaskToContentAreaContainer,toggleContentAreaAddTaskButton,contentAreaLayout,removeTaskFromContentAreaContainer};
+const loadContentAreaAddProjectTaskButton = () => {
+    let contentAreaAddProjectTaskButton = document.createElement("button");
+    contentAreaAddProjectTaskButton.classList.add("content-area-add-project-task-button");
+    contentAreaAddProjectTaskButton.textContent = "+ Add Task";
+    contentAreaAddProjectTaskButton.addEventListener("click", () => {
+        let addTaskProjectModal = document.getElementById('add-task-project-modal');
+        if (!addTaskProjectModal) {
+            createAddTaskProjectModal();
+            let addTaskProjectModal = document.getElementById('add-task-project-modal');
+            addTaskProjectModal.showModal();
+        } else {
+            addTaskProjectModal.showModal();
+        }
+    });
+    contentAreaAddProjectTaskButton.style.display = "none";
+    return contentAreaAddProjectTaskButton;
+}
+
+const toggleContentAreaAddProjectTaskButton = (flag) => {
+    let contentAreaAddProjectTaskButton = document.querySelector(".content-area-add-project-task-button");
+    if (flag  == true) {
+        contentAreaAddProjectTaskButton.style.display = 'block';
+    } else {
+        contentAreaAddProjectTaskButton.style.display = "none"
+    }
+}
+
+export {loadContentAreaAddProjectTaskButton,toggleContentAreaAddProjectTaskButton,clearContentAreaContainer,customizeContentAreaHeader,addTaskToContentAreaContainer,toggleContentAreaAddTaskButton,contentAreaLayout,removeTaskFromContentAreaContainer};

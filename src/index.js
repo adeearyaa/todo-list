@@ -2,7 +2,7 @@ import "./indexStyle.css";
 import {sidebarLayout} from "./sidebar.js";
 import {contentAreaLayout} from "./contentPage.js";
 import { sidebarTaskButtonPressed } from "./buttonLogic";
-import { addEventListenerToAddProjects } from "./projectButtonLogic";
+import { addEventListenerToAddProjects, addEventListenerToProjectButtons } from "./projectButtonLogic";
 
 const overarchingContainer = document.querySelector("#overarching-container");
 
@@ -12,6 +12,7 @@ const initialLoad = function () {
     loadFooterContainer();
     sidebarTaskButtonPressed();
     addEventListenerToAddProjects();
+    addEventListenerToProjectButtons();
 }
 
 const loadHeaderContainer = function () {

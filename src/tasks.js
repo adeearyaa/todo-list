@@ -5,6 +5,7 @@ class Task {
 
     static AllTasks = [];
     static taskId = 0;
+    static addTaskToProjectId = 0;
 
     constructor(title,date,priority, isProject, projectID) {
         this.taskId = Task.taskId++;
@@ -76,6 +77,22 @@ const displayTodaysTasks = function() {
     });
 };
 
+const displayProjectTasks = (projectID) => {
+    console.log("display" + projectID);
+    console.log(Task.AllTasks);
+    Task.AllTasks.forEach(task => {
+        if (task.isProject && task.projectID == projectID) {
+            const taskDiv = createTaskDiv(task);
+            addTaskToContentAreaContainer(taskDiv);
+            removeTaskButtonDisplay(task);
+        }
+    });
+}
+
+const updateTaskClassAboutProject = (projectID) => {
+    Task.addTaskToProjectId = projectID;
+}
+
 const createTaskDiv = (task) => {
     const taskDiv = document.createElement('div');
     taskDiv.className = 'task-item';
@@ -117,4 +134,4 @@ const createTaskDiv = (task) => {
 };
 
 
-export {Task,displayAllTasks,displayTodaysTasks,displayWeeksTasks,createTaskDiv,removeTaskButtonDisplay,addTask};
+export {updateTaskClassAboutProject,displayProjectTasks,Task,displayAllTasks,displayTodaysTasks,displayWeeksTasks,createTaskDiv,removeTaskButtonDisplay,addTask};

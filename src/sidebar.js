@@ -61,8 +61,7 @@ const displayProjectList = function()  {
     let projectDisplayList = retrieveListOfProjects();
     for (let project of projectDisplayList) {
         let projectButton = document.createElement("button");
-        projectButton.classList.add("project-buttons");
-        projectButton.classList.add(`project-${project.id}`);
+        projectButton.classList.add(`project-${project.projectId}`);
         projectButton.textContent = project.title;
         listOfProjects.appendChild(projectButton);
     }

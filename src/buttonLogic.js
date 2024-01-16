@@ -1,4 +1,4 @@
-import { clearContentAreaContainer, toggleContentAreaAddTaskButton, customizeContentAreaHeader } from "./contentPage";
+import { clearContentAreaContainer, toggleContentAreaAddTaskButton, customizeContentAreaHeader, toggleContentAreaAddProjectTaskButton } from "./contentPage";
 import {displayAllTasks,displayTodaysTasks,displayWeeksTasks} from "./tasks.js";
 
 const sidebarTaskButtonPressed = function() {
@@ -16,6 +16,7 @@ const sidebarTaskButtonPressed = function() {
 
 const allButtonPressed = function() {
     toggleContentAreaAddTaskButton(true)
+    toggleContentAreaAddProjectTaskButton(false);
     clearContentAreaContainer();
     customizeContentAreaHeader("All Tasks");
     displayAllTasks();
@@ -23,6 +24,7 @@ const allButtonPressed = function() {
 
 const todayButtonPressed = function() {
     toggleContentAreaAddTaskButton(false)
+    toggleContentAreaAddProjectTaskButton(false);
     clearContentAreaContainer();
     customizeContentAreaHeader("Today's Tasks");
     displayTodaysTasks();
@@ -30,6 +32,7 @@ const todayButtonPressed = function() {
 
 const weekButtonPressed = function() {
     toggleContentAreaAddTaskButton(false)
+    toggleContentAreaAddProjectTaskButton(false);
     clearContentAreaContainer();
     customizeContentAreaHeader("This Week's Tasks");
     displayWeeksTasks();
