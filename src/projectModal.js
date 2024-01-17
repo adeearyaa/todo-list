@@ -25,6 +25,7 @@ function createProjectModal() {
     const projectTitle = document.getElementById("projectTitle").value;
     let newProject = new Project(projectTitle);
     addNewProjectButton(newProject); 
+    modal.close();
   };
   modal.appendChild(submitButton);
 

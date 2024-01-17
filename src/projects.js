@@ -24,6 +24,7 @@
  const addNewProjectButton = (newProject) => {
     let projectButton = document.createElement("button");
     projectButton.textContent = newProject.title;
+    projectButton.classList.add("button-projects");
     projectButton.classList.add(`project-${newProject.projectId}`);
     addToProjectButtonsList(projectButton);
 }
