@@ -4,11 +4,16 @@
     margin-bottom: 10px;
     border-radius: 5px;
     background-color: #f9f9f9;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
 }
 
 .task-title {
     font-weight: bold;
     color: #333;
+    font-size:30px;
+    padding:10px;
 }
 
 .task-date {
@@ -32,4 +37,8 @@
 
 .priority-3 {
     color: green;
+}
+
+.remove-task-button {
+    width:75px;
 }

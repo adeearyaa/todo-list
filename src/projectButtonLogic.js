@@ -22,9 +22,7 @@ const addEventListenerToProjectButtons = function() {
     projectButtons.forEach(button => {
         button.addEventListener("click", (event) => {
             const classList = Array.from(event.target.classList);
-            console.log(classList);
             const projectClass = classList.find(className => className.startsWith('project-'));
-            console.log(projectClass);
             if (projectClass) {
                 projectDetails(projectClass);
 
@@ -36,11 +34,8 @@ const addEventListenerToProjectButtons = function() {
 const projectDetails = (projectClass) => {
     const projectId = projectClass.replace("project-", "");
     let projectIdInteger = parseInt(projectId);
-    console.log(projectIdInteger);
     let listOfProjects = retrieveListOfProjects();
-    console.log(listOfProjects);
     const foundProject = listOfProjects.find(project => project.projectId === projectIdInteger);
-    console.log(foundProject);
     manipulateContentPage(foundProject);
     toggleContentAreaAddProjectTaskButton(true);
     toggleContentAreaAddTaskButton(false);

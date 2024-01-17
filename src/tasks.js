@@ -53,7 +53,7 @@ const displayWeeksTasks = function() {
     endOfWeek.setDate(now.getDate() + (7 - now.getDay()));
 
     Task.AllTasks.forEach(task => {
-        if (!task.isProject && task.date <= endOfWeek) {
+        if (!task.isProject && task.date <= endOfWeek && task.date >= now.getDate()) {
             const taskDiv = createTaskDiv(task);
             addTaskToContentAreaContainer(taskDiv);
             removeTaskButtonDisplay(task);
@@ -78,8 +78,6 @@ const displayTodaysTasks = function() {
 };
 
 const displayProjectTasks = (projectID) => {
-    console.log("display" + projectID);
-    console.log(Task.AllTasks);
     Task.AllTasks.forEach(task => {
         if (task.isProject && task.projectID == projectID) {
             const taskDiv = createTaskDiv(task);

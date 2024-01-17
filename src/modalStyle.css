@@ -1,5 +1,6 @@
 .modal {
-    width: 300px;
+    width: 400px; /* Increased from 300px to 400px */
+    max-width: 90%; /* Optional: for better responsiveness on smaller screens */
     border: 1px solid #000;
     padding: 20px;
     border-radius: 5px;
@@ -12,13 +13,13 @@
 
 .modal input, .modal select, .modal button {
     display: block;
-    width: 100%;
+    width: calc(100% - 22px); /* Adjusting width to account for padding and borders */
     margin-top: 10px;
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
+    box-sizing: border-box; /* Ensures padding and border are included in the width */
 }
-
 .modal button {
     background-color: #007BFF;
     color: white;

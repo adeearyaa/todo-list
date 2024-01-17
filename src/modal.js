@@ -86,18 +86,18 @@ function createAddTaskProjectModal() {
     const taskNameInput = document.createElement('input');
     taskNameInput.setAttribute('type', 'text');
     taskNameInput.setAttribute('placeholder', 'Task Name');
-    taskNameInput.id = 'taskName';
+    taskNameInput.id = 'projectTaskName';
     modal.appendChild(taskNameInput);
 
     // Date Created Input
     const dateInput = document.createElement('input');
     dateInput.setAttribute('type', 'date');
-    dateInput.id = 'dateCreated';
+    dateInput.id = 'projectDateCreated';
     modal.appendChild(dateInput);
 
     // Priority Select
     const prioritySelect = document.createElement('select');
-    prioritySelect.id = 'priority';
+    prioritySelect.id = 'projectPriority';
     ['High', 'Medium', 'Low'].forEach(priority => {
         const option = document.createElement('option');
         option.value = priority;
@@ -110,9 +110,9 @@ function createAddTaskProjectModal() {
     const submitButton = document.createElement('button');
     submitButton.textContent = 'Submit';
     submitButton.onclick = () => {
-        const taskName = document.getElementById('taskName').value;
-        const dateCreated = document.getElementById('dateCreated').value;
-        const priority = document.getElementById('priority').value;
+        const taskName = document.getElementById('projectTaskName').value;
+        const dateCreated = document.getElementById('projectDateCreated').value;
+        const priority = document.getElementById('projectPriority').value;
         let integerPriority;
         switch(priority) {
             case "High":
@@ -126,6 +126,7 @@ function createAddTaskProjectModal() {
                 break;
         }
         let newTask = new Task(taskName,dateCreated,integerPriority,true,Task.addTaskToProjectId);
+        console.log(newTask);
         addTask(newTask);
         modal.close();
     };

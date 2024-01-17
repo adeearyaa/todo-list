@@ -1,4 +1,5 @@
 import {createModal,createAddTaskProjectModal} from "./modal.js";
+import "./contentPageStyle.css";
 
 const contentAreaLayout = function(contentArea) {
     let contentAreaHeader = loadContentAreaHeader();
@@ -47,7 +48,10 @@ const removeTaskFromContentAreaContainer = (contentAreaTasks) => {
 }
 
 const loadContentAreaAddTaskButton = () => {
+    let addButtonContainer = document.createElement("div");
+    addButtonContainer.classList.add("add-button-container");
     let contentAreaAddTaskButton = document.createElement("button");
+    addButtonContainer.appendChild(contentAreaAddTaskButton);
     contentAreaAddTaskButton.classList.add("content-area-add-task-button");
     contentAreaAddTaskButton.textContent = "+ Add Task";
     contentAreaAddTaskButton.addEventListener("click", () => {
@@ -61,7 +65,7 @@ const loadContentAreaAddTaskButton = () => {
         }
     });
     contentAreaAddTaskButton.style.display = "none";
-    return contentAreaAddTaskButton;
+    return addButtonContainer;
 }
 
 const toggleContentAreaAddTaskButton = (flag) => {
@@ -74,7 +78,10 @@ const toggleContentAreaAddTaskButton = (flag) => {
 }
 
 const loadContentAreaAddProjectTaskButton = () => {
+    let addButtonContainer = document.createElement("div");
+    addButtonContainer.classList.add("add-button-container");
     let contentAreaAddProjectTaskButton = document.createElement("button");
+    addButtonContainer.appendChild(contentAreaAddProjectTaskButton);
     contentAreaAddProjectTaskButton.classList.add("content-area-add-project-task-button");
     contentAreaAddProjectTaskButton.textContent = "+ Add Task";
     contentAreaAddProjectTaskButton.addEventListener("click", () => {
@@ -88,7 +95,7 @@ const loadContentAreaAddProjectTaskButton = () => {
         }
     });
     contentAreaAddProjectTaskButton.style.display = "none";
-    return contentAreaAddProjectTaskButton;
+    return addButtonContainer;
 }
 
 const toggleContentAreaAddProjectTaskButton = (flag) => {

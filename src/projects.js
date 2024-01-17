@@ -18,16 +18,13 @@
  } 
 
  const retrieveListOfProjects = () => {
-     let project1 = new Project("football-match");
-     let project2 = new Project("hackathon");
      return Project.AllProjects;
  }
 
  const addNewProjectButton = (newProject) => {
     let projectButton = document.createElement("button");
     projectButton.textContent = newProject.title;
-    projectButton.classList.add("project-buttons");
-    projectButton.classList.add(`project-${newProject.id}`);
+    projectButton.classList.add(`project-${newProject.projectId}`);
     addToProjectButtonsList(projectButton);
 }
 

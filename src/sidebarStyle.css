@@ -1,8 +1,7 @@
 /* CSS */
 button {
-  background-color: #ee4856;
-  border-radius: 100px;
-  box-shadow: rgba(44, 187, 99, .2) 0 -25px 18px -14px inset,rgba(44, 187, 99, .15) 0 1px 2px,rgba(44, 187, 99, .15) 0 2px 4px,rgba(44, 187, 99, .15) 0 4px 8px,rgba(44, 187, 99, .15) 0 8px 16px,rgba(44, 187, 99, .15) 0 16px 32px;
+  background-color:rgb(23, 35, 103) ;
+  border-radius: 5px;
   color: white;
   cursor: pointer;
   display: block;
@@ -17,7 +16,11 @@ button {
   -webkit-user-select: none;
   touch-action: manipulation;
   margin-bottom:4px;
-  width:90px;
+  width:150px;
+}
+
+.sidebar-task-buttons {
+  margin-bottom:-30px
 }
 
 button:hover, .task-buttons:focus {
@@ -25,7 +28,31 @@ button:hover, .task-buttons:focus {
   transform: scale(1.05) rotate(-1deg);
 }
 
-.sidebar-project-header {
-    color:black;
-    padding:15px;
+.task-buttons, .sidebar-task-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.icon-class {
+  width:20px;
+  height:auto;
+  margin-right:10px;
+}
+
+.list-of-projects {
+  font-size:12px;
+}
+
+
+.sidebar-task-header, .sidebar-project-header {
+  padding:5px;
+  color:white;
+  font-size:large;
+  border-bottom:2px solid white;
+  margin-bottom:-40px;
+}
+
+.add-project-button {
+  background-color:rgb(74, 119, 6);
 }

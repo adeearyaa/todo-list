@@ -1,8 +1,9 @@
 import "./indexStyle.css";
 import {sidebarLayout} from "./sidebar.js";
 import {contentAreaLayout} from "./contentPage.js";
-import { sidebarTaskButtonPressed } from "./buttonLogic";
+import { allButtonPressed, sidebarTaskButtonPressed } from "./buttonLogic";
 import { addEventListenerToAddProjects, addEventListenerToProjectButtons } from "./projectButtonLogic";
+import checkMark from "./icons8-checkmark-48.png";
 
 const overarchingContainer = document.querySelector("#overarching-container");
 
@@ -13,12 +14,18 @@ const initialLoad = function () {
     sidebarTaskButtonPressed();
     addEventListenerToAddProjects();
     addEventListenerToProjectButtons();
+    allButtonPressed();
 }
 
 const loadHeaderContainer = function () {
     let header = document.createElement("div");
+    let icon = new Image();
+    icon.src = checkMark;
+    icon.classList.add("main-header-icon");
+    let text = document.createTextNode("DAILY - PLANNER");
     header.classList.add("header");
-    header.textContent = "DAILY - PLANNER";
+    header.appendChild(icon);
+    header.appendChild(text);
     overarchingContainer.appendChild(header);
 }
 
@@ -35,7 +42,6 @@ const loadSidebar = function(middleContainer) {
     sidebar.classList.add("sidebar");
     sidebarLayout(sidebar);
     middleContainer.appendChild(sidebar);
-    console.log("yes");
 }
 
 const loadContentArea = function(middleContainer) {

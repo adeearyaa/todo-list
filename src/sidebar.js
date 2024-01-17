@@ -1,8 +1,15 @@
 import "./sidebarStyle.css";
 import {retrieveListOfProjects} from "./projects.js";
+import home from "./icons8-home-48.png";
+import all from "./icons8-inbox-48.png";
+import week from "./icons8-7-days-64.png";
+import today from "./icons8-business-64.png"
 
 
 const sidebarLayout = function(sidebar) {
+    let tasksHeader = loadTaskHeader();
+    sidebar.appendChild(tasksHeader);
+
     let sidebarTasks = loadSidebarTasks();
     sidebar.appendChild(sidebarTasks);
 
@@ -14,6 +21,28 @@ const sidebarLayout = function(sidebar) {
 
     let addProjectButton = loadAddProjectButton();
     sidebar.appendChild(addProjectButton);
+}
+
+const loadTaskHeader = () => {
+    let taskHeader = document.createElement("div");
+    taskHeader.classList.add("sidebar-task-header");
+
+    // Create an img element for the icon
+    let icon = new Image();
+    icon.src = home; // Set the path to your icon image file
+    icon.classList.add("icon-class"); // Optional: Add a class for styling
+    icon.alt = 'Home'; // Set an alt text for the icon
+
+    // Add the icon to the taskHeader
+    taskHeader.appendChild(icon);
+
+    // Create a text node for the "Home" text
+    let text = document.createTextNode(" Home");
+
+    // Add the text node to the taskHeader
+    taskHeader.appendChild(text);
+
+    return taskHeader;
 }
 
 const loadSidebarTasks = () => {
@@ -30,21 +59,33 @@ const customizeTaskButtons = function() {
         let taskButton = document.createElement("button");
         taskButton.classList.add("task-buttons");
         taskButton.classList.add(`${item}-button`)
-        taskButton.textContent = item;
+        let text = document.createTextNode(item);
+        taskButton.appendChild(text)
+        let icon = new Image();
+        if (item == "All") {
+            icon.src = all;
+        } else if (item == "Today") {
+            icon.src = today;
+        }  else if (item == "Week") {
+            icon.src = week;
+        }
+        icon.classList.add("icon-class"); // Optional: Add a class for styling
+        icon.alt = 'Home'; // Set an alt text for the icon
+        taskButton.appendChild(icon)
         taskButtons.appendChild(taskButton);
     }
     return taskButtons;
 }
 
 const loadProjectHeader = () => {
-    let projectHeader = document.createElement("h2");
+    let projectHeader = document.createElement("div");
     customizeHeader(projectHeader);
     projectHeader.classList.add("sidebar-project-header");
     return projectHeader;
 }
 
 const customizeHeader = function(projectHeader) {
-    projectHeader.textContent = "PROJECTS";
+    projectHeader.textContent = "Your Projects";
 }
 
 const loadProjectList = () => {
